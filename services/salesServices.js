@@ -13,7 +13,8 @@ const getAll = async () => {
 
 const getById = async (id) => {
   const data = await models.sales.getById(id);
-  if (!data.length) throw { status: HTTP_NOT_FOUND, message: MSG_SALE_NOTFOUND };
+  const error = { status: HTTP_NOT_FOUND, msg: MSG_SALE_NOTFOUND };
+  if (!data.length) throw error;
   return { status: HTTP_OK, data };
 };
 
@@ -21,4 +22,3 @@ module.exports = {
   getAll,
   getById,
 };
-

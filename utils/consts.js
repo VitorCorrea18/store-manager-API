@@ -35,4 +35,3 @@ module.exports = {
   MSG_PRODUCT_EXISTS,
   MSG_SALE_NOTFOUND,
 };
-

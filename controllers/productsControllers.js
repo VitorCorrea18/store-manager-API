@@ -10,7 +10,7 @@ const getById = async (req, res) => {
     const result = await services.products.getById(req.params.id);
     return res.status(result.status).json(result.data);
   } catch (err) {
-    return res.status(err.status).json(err.message);
+    return res.status(err.status).json(err.msg);
   }
 };
 
@@ -18,4 +18,3 @@ module.exports = {
   getAll,
   getById,
 };
-

@@ -5,4 +5,3 @@ module.exports = {
   products: productsServices,
   sales: salesServices,
 };
-

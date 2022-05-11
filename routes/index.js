@@ -5,4 +5,3 @@ module.exports = {
   products: productsRoutes,
   sales: salesRoutes,
 };
-
