@@ -6,6 +6,7 @@ const {
   HTTP_CONFLIT,
   MSG_PRODUCT_EXISTS,
   HTTP_CREATED,
+  HTTP_NO_CONTENT,
 } = require('../utils/consts');
 
 const getAll = async () => {
@@ -46,9 +47,16 @@ const update = async ({ id, name, quantity }) => {
   return { ...HTTP_OK, data };
 };
 
+const deletePct = async (id) => {
+  await getById(id); // check if ID exists
+  await models.products.deletePct(id);
+  return { ...HTTP_NO_CONTENT };
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
+  deletePct,
 };

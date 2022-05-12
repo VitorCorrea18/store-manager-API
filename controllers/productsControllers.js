@@ -35,9 +35,20 @@ const update = async (req, res) => {
   }
 };
 
+const deletePct = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await services.products.deletePct(id);
+    return res.status(result.status).end();
+  } catch (err) {
+    return res.status(err.status).json({ message: err.message });
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
+  deletePct,
 };
