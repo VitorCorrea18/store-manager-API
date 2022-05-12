@@ -21,9 +21,7 @@ const getById = async (id) => {
 };
 
 const findByName = async (name) => {
-  console.log('find', name);
   const data = await models.products.findByName(name);
-  console.log('resposta do findName', data);
   if (data.length) {
     const error = { ...HTTP_CONFLIT, ...MSG_PRODUCT_EXISTS };
     return error;
@@ -32,9 +30,7 @@ const findByName = async (name) => {
 };
 
 const create = async ({ name, quantity }) => {
-  console.log('services', name, quantity);
   const error = await findByName(name);
-  console.log('resultado do error', error);
   if (error.status) {
     throw error;
   }

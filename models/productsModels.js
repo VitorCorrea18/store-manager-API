@@ -13,11 +13,8 @@ const getById = async (id) => {
 };
 
 const findByName = async (name) => {
-  console.log('findByName Models', name);
   const query = 'SELECT * FROM products WHERE name = ?';
-  // veirficar se o erro esta na query
   const [data] = await connection.execute(query, [name]);
-  console.log(data);
   return data;
 };
 
