@@ -10,11 +10,22 @@ const getById = async (req, res) => {
     const result = await services.products.getById(req.params.id);
     return res.status(result.status).json(result.data);
   } catch (err) {
-    return res.status(err.status).json(err.msg);
+    return res.status(err.status).json({ message: err.message });
+  }
+};
+
+const create = async (req, res) => {
+  const { name, quantity } = req.body;
+  try {
+    const result = await services.products.create({ name, quantity });
+    return res.status(result.status).json(result.data);
+  } catch (err) {
+    return res.status(err.status).json({ message: err.message });
   }
 };
 
 module.exports = {
   getAll,
   getById,
+  create,
 };
