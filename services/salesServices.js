@@ -27,8 +27,18 @@ const create = async (newSale) => {
   return { ...HTTP_CREATED, data };
 };
 
+const update = async (saleId, products) => {
+  await getById(saleId);
+  await products.forEach(({ productId, quantity }) => {
+    models.sales.update(saleId, productId, quantity);
+  });
+  const data = { saleId, itemUpdated: products };
+  return { ...HTTP_OK, data };
+};
+
 module.exports = {
   getAll,
   getById,
   create,
+  update,
 };
