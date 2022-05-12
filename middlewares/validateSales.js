@@ -6,15 +6,16 @@ const SCHEMA = Joi.object({
   quantity: Joi.number().min(1).required(),
 });
 
-const validateSales = (req, res, next) => {
-  const { productId, quantity } = req.body;
-  const { error } = SCHEMA.validate({ productId, quantity });
-  if (error) {
-    const status = error.message.includes('required')
-      ? HTTP_BAD_REQUEST : HTTP_UNPROCESSABLE_ENTRY;
+const validateSales = ({ body }, _res, next) => {
+  body.forEach(({ productId, quantity }) => {
+    const { error } = SCHEMA.validate({ productId, quantity });
+    if (error) {
+      const status = error.message.includes('required')
+        ? HTTP_BAD_REQUEST : HTTP_UNPROCESSABLE_ENTRY;
 
-    next({ ...status, message: error.message });
-  }
+      next({ ...status, message: error.message });
+    }
+  });
   next();
 };
 
