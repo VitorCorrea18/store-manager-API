@@ -3,12 +3,19 @@ const routes = require('./routes');
 
 const app = express();
 
+app.use(express.json());
 app.use('/products', routes.products);
 app.use('/sales', routes.sales);
 
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.send();
+});
+
+app.use((err, _req, res, _next) => {
+  if (err.status) return res.status(err.status).json({ message: err.message });
+  console.log(err);
+  return res.status(500).json({ message: 'Internal server error' });
 });
 
 // não remova essa exportação, é para o avaliador funcionar
