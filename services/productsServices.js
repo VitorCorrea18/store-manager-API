@@ -15,8 +15,10 @@ const getAll = async () => {
 
 const getById = async (id) => {
   const data = await models.products.getById(id);
-  const error = { ...HTTP_NOT_FOUND, ...MSG_PRODUCT_NOTFOUND };
-  if (!data) throw error;
+  if (!data) {
+    const error = { ...HTTP_NOT_FOUND, ...MSG_PRODUCT_NOTFOUND };
+    throw error;
+  }
   return { ...HTTP_OK, data };
 };
 
@@ -38,8 +40,15 @@ const create = async ({ name, quantity }) => {
   return { ...HTTP_CREATED, data };
 };
 
+const update = async ({ id, name, quantity }) => {
+  await getById(id); // check if ID exists
+  const data = await models.products.update({ id, name, quantity });
+  return { ...HTTP_OK, data };
+};
+
 module.exports = {
   getAll,
   getById,
   create,
+  update,
 };
