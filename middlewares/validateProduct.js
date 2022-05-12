@@ -16,7 +16,7 @@ const validateProduct = (req, _res, next) => {
     const status = error.message.includes('required')
       ? HTTP_BAD_REQUEST : HTTP_UNPROCESSABLE_ENTRY;
 
-    next({ status, message: error.message });
+    next({ ...status, message: error.message });
   }
   next();
 };
