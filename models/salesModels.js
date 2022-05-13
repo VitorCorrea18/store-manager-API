@@ -1,12 +1,5 @@
 const connection = require('./connection');
 
-const toCamelCase = (data) => ({
-  saleId: data.sale_id,
-  productId: data.product_id,
-  quantity: data.quantity,
-  date: data.date,
-});
-
 const getAll = async () => {
   const query = `
   SELECT
@@ -19,8 +12,7 @@ const getAll = async () => {
   ORDER BY s_p.sale_id, s_p.product_id;
   `;
   const [data] = await connection.execute(query);
-  const dataCamelCase = data.map(toCamelCase);
-  return dataCamelCase;
+  return data;
 };
 
 const getById = async (id) => {
@@ -35,8 +27,7 @@ const getById = async (id) => {
   WHERE sal.id = ?
   `;
   const [data] = await connection.execute(query, [id]);
-  const dataCamelCase = data.map(toCamelCase);
-  return dataCamelCase;
+  return data;
 };
 
 const create = async () => {

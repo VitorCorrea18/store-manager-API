@@ -4,7 +4,7 @@ const models = require('../../../models');
 const connection = require('../../../models/connection');
 
 // MODELS PRODUCTS getALL
-describe('Testa a função getAll que deve retornar a listagem dos produtos,', () => {
+describe('PRODUCTS MODELS - Testa a função getAll que deve listar os produtos,', () => {
   describe('Quando não existem produtos cadastrados no banco', () => {
     const resultExecute = [[]];
 
@@ -75,7 +75,7 @@ describe('Testa a função getAll que deve retornar a listagem dos produtos,', (
 });
 
 // MODELS PRODUCTS getById
-describe('Testa a função getById, que deve retornar um produto específico', () => {
+describe('PRODUCTS MODELS - Testa a função getById, que deve listar um produto específico', () => {
   describe('Se o produto não existe', () => {
     const resultExecute = [];
     const id = 2;
@@ -132,7 +132,7 @@ describe('Testa a função getById, que deve retornar um produto específico', (
 });
 
 //MODELS PRODUCTS findByName
-describe('Testa a função findByName, que deve buscar um produto pelo nome', () => {
+describe('PRODUCTS MODELS - Testa a função findByName, que deve buscar um produto pelo nome', () => {
   describe('Se existe um produto com o nome especificado', () => {
     const resultExecute = [{
       id: 1,
@@ -168,7 +168,7 @@ describe('Testa a função findByName, que deve buscar um produto pelo nome', ()
 });
 
 // MODELS PRODUCTS create
-describe('Testa a função create que deve retornar o produto criado', () => {
+describe('PRODUCTS MODELS - Testa a função create que deve retornar o produto criado', () => {
   const resultExecute = [{
     insertId: 1,
   }];
@@ -210,7 +210,7 @@ describe('Testa a função create que deve retornar o produto criado', () => {
 });
 
 // MODELS PRODUCT UPDATE
-describe('Testa a função update que deve retornar o produto atualizado', () => {
+describe('PRODUCTS MODELS - Testa a função update que deve retornar o produto atualizado', () => {
   const resultExecute = [{
     id: 1,
     name: "Bigorna Sagrada",
@@ -244,7 +244,7 @@ describe('Testa a função update que deve retornar o produto atualizado', () =>
 });
 
 // MODELS PRODUCTS delete
-describe('Testa a função delete', () => {
+describe('PRODUCTS MODELS - Testa a função delete', () => {
   const resultExecute = [[]];
   const id = 1;
 

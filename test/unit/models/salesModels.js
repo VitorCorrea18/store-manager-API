@@ -4,7 +4,7 @@ const models = require('../../../models');
 const connection = require('../../../models/connection');
 
 // MODELS SALES getALL
-describe('SALES -- Testa a função getAll que deve retornar a listagem dos produtos,', () => {
+describe('SALES MODELS - Testa a função getAll que deve retornar a listagem das vendas', () => {
   describe('Quando não existem vendas cadastradas no banco', () => {
     const resultExecute = [[]];
 
@@ -31,9 +31,9 @@ describe('SALES -- Testa a função getAll que deve retornar a listagem dos prod
 
   describe('Quando há vendas cadastrados no banco', () => {
     const resultExecute = [{
-      "saleId": 1,
+      "sale_Id": 1,
       "date": "2021-09-09T04:54:29.000Z",
-      "productId": 1,
+      "product_Id": 1,
       "quantity": 2
     }]
 
@@ -67,9 +67,9 @@ describe('SALES -- Testa a função getAll que deve retornar a listagem dos prod
       const [result] = await models.sales.getAll();
 
       expect(result).to.be.include.all.keys(
-        'saleId',
+        'sale_Id',
         'date',
-        'productId',
+        'product_Id',
         'quantity'
       );
     });
@@ -77,7 +77,7 @@ describe('SALES -- Testa a função getAll que deve retornar a listagem dos prod
 });
 
 // MODELS SALES getById
-describe('Testa a função getById, que deve retornar uma venda específica', () => {
+describe('SALES MODELS - Testa a função getById, que deve retornar uma venda específica', () => {
   describe('Se a venda não existe', () => {
     const resultExecute = [];
     const id = 2;
@@ -102,9 +102,9 @@ describe('Testa a função getById, que deve retornar uma venda específica', ()
     const id = 1;
     const resultExecute = [
       {
-        "saleId": 1,
+        "sale_Id": 1,
         "date": "2021-09-09T04:54:29.000Z",
-        "productId": 1,
+        "product_Id": 1,
         "quantity": 2
       }
     ]
@@ -127,9 +127,9 @@ describe('Testa a função getById, que deve retornar uma venda específica', ()
       const [result] = await models.sales.getById(id);
 
       expect(result).to.be.include.all.keys(
-        "saleId",
+        "sale_Id",
         "date",
-        "productId",
+        "product_Id",
         "quantity"
       );
     });
@@ -137,7 +137,7 @@ describe('Testa a função getById, que deve retornar uma venda específica', ()
 });
 
 // MODELS SALES create
-describe('Testa a função create que deve retornar a venda criada', () => {
+describe('SALES MODELS - Testa a função create que deve retornar a venda criada', () => {
   const resultExecute = [{
     insertId: 1
   }];
@@ -164,7 +164,7 @@ describe('Testa a função create que deve retornar a venda criada', () => {
 });
 
 // MODELS SALES insertProducts
-describe('Testa a função insertProducts que não deve retornar nada', () => {
+describe('SALES MODELS - Testa a função insertProducts que não deve retornar nada', () => {
   const resultExecute = [];
 
   before(() => {
@@ -183,7 +183,7 @@ describe('Testa a função insertProducts que não deve retornar nada', () => {
 });
 
 // MODELS SALES UPDATE
-describe('Testa a função update que não deve retornar nada', () => {
+describe('SALES MODELS - Testa a função update que não deve retornar nada', () => {
   const resultExecute = [];
 
   before(() => {
