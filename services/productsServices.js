@@ -26,15 +26,15 @@ const getById = async (id) => {
 const findByName = async (name) => {
   const data = await models.products.findByName(name);
   if (data.length) {
-    const error = { ...HTTP_CONFLIT, ...MSG_PRODUCT_EXISTS };
-    return error;
+    return true;
   }
   return false;
 };
 
 const create = async ({ name, quantity }) => {
-  const error = await findByName(name);
-  if (error.status) {
+  const productExists = await findByName(name);
+  if (productExists) {
+    const error = { ...HTTP_CONFLIT, ...MSG_PRODUCT_EXISTS };
     throw error;
   }
   const data = await models.products.create({ name, quantity });
@@ -56,6 +56,7 @@ const deletePct = async (id) => {
 module.exports = {
   getAll,
   getById,
+  findByName,
   create,
   update,
   deletePct,
