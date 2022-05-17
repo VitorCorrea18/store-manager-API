@@ -33,7 +33,7 @@ const deleteSale = async (req, res) => {
     return res.status(result.status).end();
   } catch (err) {
     return res.status(err.status).json({ message: err.message });
-  };
+  }
 };
 
 module.exports = {
