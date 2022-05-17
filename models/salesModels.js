@@ -54,10 +54,18 @@ const update = async (id, productId, quantity) => {
   await connection.execute(query, [productId, quantity, id]);
 };
 
+const deleteSale = async (id) => {
+  const query = 'DELETE FROM sales_products WHERE sale_id = ?';
+  await connection.execute(query, [id]);
+  const query2 = 'DELETE FROM sales WHERE id = ?';
+  await connection.execute(query2, [id]);
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   insertProducts,
   update,
+  deleteSale,
 };

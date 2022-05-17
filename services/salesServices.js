@@ -4,6 +4,7 @@ const {
   HTTP_NOT_FOUND,
   MSG_SALE_NOTFOUND,
   HTTP_CREATED,
+  HTTP_NO_CONTENT,
 
 } = require('../utils/consts');
 
@@ -45,9 +46,15 @@ const update = async (saleId, products) => {
   return { ...HTTP_OK, data };
 };
 
+const deleteSale = async (saleId) => {
+  await models.sales.deleteSale(saleId);
+  return { ...HTTP_NO_CONTENT };
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
+  deleteSale,
 };

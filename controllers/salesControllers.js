@@ -26,9 +26,20 @@ const update = async (req, res) => {
   return res.status(result.status).json(result.data);
 };
 
+const deleteSale = async (req, res) => {
+  try {
+    await services.sales.getById(req.params.id);
+    const result = await services.sales.deleteSale(req.params.id);
+    return res.status(result.status).end();
+  } catch (err) {
+    return res.status(err.status).json({ message: err.message });
+  };
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
+  deleteSale,
 };
