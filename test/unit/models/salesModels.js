@@ -201,3 +201,21 @@ describe('SALES MODELS - Testa a função update que não deve retornar nada', (
   });
 });
 
+describe('SALES MODELS - Tests the deleteSale function', () => {
+  const id = 1;
+
+  before(() => {
+    sinon.stub(connection, 'execute').resolves();
+  });
+
+  after(() => {
+    connection.execute.restore();
+  });
+
+  it('Should return nothing', async () => {
+    const result = await models.sales.deleteSale(id);
+
+    expect(result).to.be.an('undefined');
+  });
+});
+

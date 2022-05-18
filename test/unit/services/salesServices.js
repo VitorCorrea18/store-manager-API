@@ -7,6 +7,7 @@ const {
   HTTP_NOT_FOUND,
   MSG_SALE_NOTFOUND,
   HTTP_CREATED,
+  HTTP_NO_CONTENT,
 } = require('../../../utils/consts');
 
 describe('SALES SERVICES - Tests the getAll function', () => {
@@ -270,5 +271,23 @@ describe('SALES SERVICE - Tests the update function', () => {
     expect(data.itemUpdated).to.be.an('array');
     expect(data.itemUpdated[0]).to.be.an('object');
     expect(data.itemUpdated[0]).to.be.includes.keys('productId', 'quantity');
+  });
+});
+
+describe('SERVICES SALES - Test the deletesale function', () => {
+  const id = 1;
+
+  before(() => {
+    sinon.stub(models.sales, 'deleteSale').resolves();
+  });
+
+  after(() => {
+    models.sales.deleteSale.restore();
+  });
+
+  it('Returns an object with key status equal to 204', async () => {
+    const { status } = await services.sales.deleteSale(id);
+
+    expect(status).to.be.equal(HTTP_NO_CONTENT.status);
   });
 });
