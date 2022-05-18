@@ -182,7 +182,7 @@ describe('SALES SERVICES - Tests the create function', () => {
   }];
 
   before(() => {
-    sinon.stub(models.sales, 'create');
+    sinon.stub(models.sales, 'create').resolves(resultCreate);
   });
 
   after(() => {
