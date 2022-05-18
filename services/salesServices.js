@@ -38,7 +38,6 @@ const create = async (newSale) => {
 };
 
 const update = async (saleId, products) => {
-  await getById(saleId);
   await products.forEach(({ productId, quantity }) => {
     models.sales.update(saleId, productId, quantity);
   });

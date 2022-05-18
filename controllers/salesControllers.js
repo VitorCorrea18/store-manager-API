@@ -20,10 +20,13 @@ const create = async ({ body }, res) => {
 };
 
 const update = async (req, res) => {
-  const { id } = req.params;
-  const { body } = req;
-  const result = await services.sales.update(id, body);
-  return res.status(result.status).json(result.data);
+  try {
+    await services.sales.getById(req.params.id);
+    const result = await services.sales.update(req.params.id, req.body);
+    return res.status(result.status).json(result.data);
+  } catch (err) {
+    return res.status(err.status).json({ message: err.message });
+  }
 };
 
 const deleteSale = async (req, res) => {
